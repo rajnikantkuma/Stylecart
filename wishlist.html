@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wishlist</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container py-4">
+    <h2 class="text-center">❤️ Wishlist</h2>
+
+    <div id="wishlistPage" class="row"></div>
+
+    <div class="text-center mt-4">
+        <button onclick="goBack()" class="btn btn-dark">⬅ Back</button>
+    </div>
+</div>
+
+<script>
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+function displayWishlistPage(){
+    let container = document.getElementById("wishlistPage");
+    container.innerHTML = "";
+
+    wishlist.forEach(item=>{
+        container.innerHTML += `
+        <div class="col-md-4 mb-4">
+            <div class="card p-2">
+                <img src="${item.img}" class="card-img-top">
+                <div class="text-center">
+                    <h5>${item.name}</h5>
+                    <p>₹${item.price}</p>
+                </div>
+            </div>
+        </div>`;
+    });
+}
+
+function goBack(){
+    window.location.href = "index.html";
+}
+
+displayWishlistPage();
+</script>
+
+</body>
+</html>
